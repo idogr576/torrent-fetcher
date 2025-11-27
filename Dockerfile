@@ -4,4 +4,4 @@ RUN pip install torrentp
 
 ADD . /root/
 
-RUN pip install -e /root/torrent-fetcher
+# RUN pip install -e /root/torrent-fetcher
