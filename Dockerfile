@@ -8,4 +8,4 @@ WORKDIR /root/torrent-fetcher
 
 RUN pip install -r requirements.txt
 
-ENTRYPOINT [ "/root/run.sh" ]
+ENTRYPOINT [ "/root/torrent-fetcher/run.sh" ]

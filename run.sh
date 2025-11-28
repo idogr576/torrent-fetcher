@@ -8,7 +8,6 @@ while read NEWFILE
 do
     if [[ "$NEWFILE" == *.torrent ]]; then
 	echo "New torrent file detected: $NEWFILE"
-	echo "aria2c --seed-time=0 -d $MOVIES_DIR $NEWFILE"
-	python /root/download.py $NEWFILE
-    fi
+	python torrent_download.py $NEWFILE
+fi
 done
