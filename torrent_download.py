@@ -1,8 +1,6 @@
 import asyncio
-import shutil
 import sys
 from pathlib import Path
-from typing import Generator
 from torrentp import TorrentDownloader
 
 
@@ -10,13 +8,8 @@ MOVIES_PATH = Path("/movies")
 TORRENTS_PATH = Path("/torrents")
 
 
-def discover_torrent_file() -> Generator[Path]:
-    for torrent_file in TORRENTS_PATH.iterdir():
-        if not torrent_file.is_file() or not torrent_file.suffix == ".torrent":
-            continue
-        print(f"discovered torrent {torrent_file.name}")
-        yield torrent_file
-
+def is_torrent_file(torrent_file: Path) -> bool:
+    return torrent_file.is_file() and torrent_file.suffix == ".torrent"
 
 def download_torrent_file(torrent_file: Path):
     torrent = TorrentDownloader(torrent_file.as_posix(), MOVIES_PATH.as_posix())
@@ -25,10 +18,14 @@ def download_torrent_file(torrent_file: Path):
     
 
 def main():
-    torrent_file = sys.argv[1]
-    print(f"torrent file is {torrent_file}")
+    if len(sys.argv) != 2:
+        print("script must be run using one arg")
+    torrent_file = Path(sys.argv[1])
+    if not is_torrent_file(torrent_file):
+        print("arg must be a valid torrent file")
+
     download_torrent_file(Path(torrent_file))
+
 
 if __name__ == "__main__":
     main()
-
