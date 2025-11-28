@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  torrent-fetcher:
+    image: torrent-fetcher:latest
+    container_name: torrent-fetcher
+    volumes:
+      - /media/Torrents:/torrents
+      - /media/Media/Movies:/movies
+    restart: unless-stopped
+
