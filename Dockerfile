@@ -1,8 +1,9 @@
-FROM debian:latest
+# FROM debian:latest
+FROM python:latest
 
-RUN apt-get update && apt-get install -y inotify-tools aria2
+RUN apt-get update && apt-get install -y inotify-tools
 
-RUN rm -f /root/.cache/aria2/dht.dat
+RUN pip install torrentp
 
 ADD . /root
 
