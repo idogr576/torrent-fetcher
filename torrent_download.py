@@ -11,11 +11,12 @@ TORRENTS_PATH = Path("/torrents")
 def is_torrent_file(torrent_file: Path) -> bool:
     return torrent_file.is_file() and torrent_file.suffix == ".torrent"
 
+
 def download_torrent_file(torrent_file: Path):
     torrent = TorrentDownloader(torrent_file.as_posix(), MOVIES_PATH.as_posix())
     print(f"downloading torrent {torrent_file.name}")
     return asyncio.run(torrent.start_download())
-    
+
 
 def main():
     if len(sys.argv) != 2:
