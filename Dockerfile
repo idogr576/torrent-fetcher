@@ -1,6 +1,6 @@
 FROM debian:latest
 
-RUN apt-get update && apt-get install inotify-tools aria2c
+RUN apt-get update && apt-get install inotify-tools aria2
 
 ADD . /root
 
