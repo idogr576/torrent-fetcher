@@ -7,7 +7,9 @@ inotifywait -m $TORRENTS_DIR -e create --format '%w%f' |
 while read NEWFILE
 do
     if [[ "$NEWFILE" == *.torrent ]]; then
-        echo "New torrent file detected: $NEWFILE"
-        aria2c --seed-time=0 -d $MOVIES_DIR $NEWFILE
+	echo "New torrent file detected: $NEWFILE"
+	echo "aria2c --seed-time=0 -d $MOVIES_DIR $NEWFILE"
+	test -e $NEWFILE && echo 'confirmed file exists'
+	aria2c --seed-time=0 -d $MOVIES_DIR $NEWFILE
     fi
 done
