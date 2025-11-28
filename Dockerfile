@@ -1,7 +1,7 @@
-FROM python:latest
+FROM debian:latest
 
-RUN pip install torrentp
+RUN apt-get update && apt-get install inotify-tools aria2c
 
-ADD . /root/
+ADD . /root
 
-# RUN pip install -e /root/torrent-fetcher
+ENTRYPOINT [ "/root/run.sh" ]
