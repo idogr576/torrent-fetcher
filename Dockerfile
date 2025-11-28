@@ -1,7 +1,11 @@
 FROM python:latest
 
-RUN pip install torrentp
+RUN apt-get update && apt-get install -y inotify-tools
 
-ADD . /root/
+ADD . /root/torrent-fetcher
 
-# RUN pip install -e /root/torrent-fetcher
+WORKDIR /root/torrent-fetcher
+
+RUN pip install -r requirements.txt
+
+ENTRYPOINT [ "/root/torrent-fetcher/run.sh" ]
